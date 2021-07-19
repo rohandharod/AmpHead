@@ -1,0 +1,35 @@
+{%extends 'music/basic.html'%}
+{% block title%}Login{% endblock %}
+{% block body %}
+{% if user.is_authenticated %}
+<h1 style="color: white; text-align: center;padding-top: 20%;padding-bottom: 2%;">You are already logged in...........</h1>
+
+{% else %}
+<h1 style="color: white; text-align: center;padding-top: 5%;">Login here</h1>
+
+    <div class="container my-3" style="color: white;padding-top: 4%;">
+    <form action="/music/login" method="POST">{% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Your Username" >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+        </div>
+        <div style="padding-top: 2%;">
+        <button type="submit" class="btn btn-success">Login</button>
+        
+        <a href="reset_password" style="padding-left: 1%">Forgot Password?
+      </a></div>
+        <div style="padding-top: 2%; color: gainsboro;">
+          <h1>{% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}</h1>
+        </div>
+      </form>
+    </div>
+   
+    {% endif %}
+
+{% endblock %}
